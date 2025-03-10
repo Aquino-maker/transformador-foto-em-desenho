@@ -14,7 +14,7 @@ color5 = "#038cfc"  # Azul
 # Criação da janela
 janela = Tk()
 janela.title("Transformador de Fotos")  # Adicionando um titulo a janela.
-janela.geometry('450x600')  # Definindo a altura e largura da janela
+janela.geometry('500x600')  # Definindo a altura e largura da janela
 janela.configure(bg=color0)  # Dando uma cor ao fundo do programa.
 janela.resizable(width=False, height=False)  # Cria um tamanho fixo para o programa.
 
@@ -64,6 +64,13 @@ def convert_image(event=None):
     label_preview_transform.image = image_preview
 
 
+# Função para salvar a imagem.
+def save_image():
+    if image_converted:
+        path = filedialog.asksaveasfilename(defaultextension=".png", filetypes=[("PNG files", "*.png"), ("All files",
+                                                                                                         "*.*")])
+        if path:
+            image_converted.save(path)
 
 
 
@@ -113,7 +120,7 @@ scale_contrast.place(x=115, y=210)
 button_select = Button(janela, text="Escolher Imagem", command=choose_image, bg=color5, fg=color1, font=('Arial', 10), width=15)
 button_select.place(x=20, y=550)
 
-button_save = Button(janela, text="Salvar Imagem", bg=color4, fg=color1, font=('Arial', 10), width=15)
+button_save = Button(janela, text="Salvar Imagem", command=save_image, bg=color4, fg=color1, font=('Arial', 10), width=15)
 button_save.place(x=300, y=550)
 
 janela.mainloop()
